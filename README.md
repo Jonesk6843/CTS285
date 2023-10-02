@@ -1,4 +1,4 @@
-theme: minima
+theme: cayman
 
 CTS 285
 
