@@ -1,3 +1,5 @@
+theme: minima
+
 CTS 285
 
 Kent Jones Jr
