@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %} Home {% endblock %}</title>
+<style>
+body {
+  background-image: url('images/bits.jpg');
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  }
+a:visited{
+  color:white;
+}
+a:hover {
+	color:green;
+}
+header {
+	text-align: center;
+	}
+footer {
+	text-align: center;
+	}
+table {
+	text-align: center;
+	}
+a, p, h1, h2, h3, table, ul{
+ color: black; font-size:20px;
+}
+tr {
+    background-color:Orange;
+}
+</style>
+</head>
+<body>
+<Header>
+	<h3 style="background-color:DodgerBlue;">Mathematics done to the MAX!</h3>
+</Header>
+<table>
+<tr>
+	<th><a id = "home" href="/"> Home Page |</a></th>
+	<th><a id ="login" href="/login"> Login|</a></th>
+	<th><a id ="logout" href="/logout"> Logout |</a></th>
+	<th><a id = "signUp" href="/signUp"> Signup |</a></th>
+</tr>
+<div class ="container">
+    {% block content %} {% endblock %}
+
+</div>
