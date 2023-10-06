@@ -43,6 +43,28 @@ tr {
 	<th><a id ="logout" href="/logout"> Logout |</a></th>
 	<th><a id = "signUp" href="/signUp"> Signup |</a></th>
 </tr>
+
+{% with messages = get_flashed_messages(with_categories=true)%}
+{% if messages %}
+	{% for category, message in messages %}
+	{% if category =='error' %}
+	<div class="alert alert-danger alter-dismissable fade show" role ="alert">
+		{{message}}
+		<button type ="button" class ="close" data-dismiss="alert">
+			<span aria-hidden = "true">&tiems;</span>
+		</button>
+	</div>
+	{% else %}
+	<div class="alert alert-success alter-dismissable fade show" role ="alert">
+		{{message}}
+		<button type ="button" class ="close" data-dismiss="alert">
+			<span aria-hidden = "true">&tiems;</span>
+		</button>
+	</div>
+	{% endif %}
+	{% endfor %}
+{% endif %}
+{% endwith %}
 <div class ="container">
     {% block content %} {% endblock %}
 
