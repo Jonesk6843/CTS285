@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{% block title %} Home {% endblock %}</title>
+<title>{% block title %} Calculatron: Home {% endblock %}</title>
 <style>
 body {
-  background-image: url('images/bits.jpg');
+  background-color: rgb(20, 208, 255);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
   }
 a:visited{
-  color:white;
+  color:rgb(29, 0, 116);
 }
 a:hover {
-	color:green;
+	color:rgb(243, 3, 3);
 }
 header {
 	text-align: center;
@@ -27,23 +27,24 @@ table {
 a, p, h1, h2, h3, table, ul{
  color: black; font-size:20px;
 }
-tr {
-    background-color:Orange;
-}
 </style>
 </head>
-<body>
 <Header>
 	<h3 style="background-color:DodgerBlue;">Mathematics done to the MAX!</h3>
 </Header>
-<table>
-<tr>
-	<th><a id = "home" href="/"> Home Page |</a></th>
-	<th><a id ="login" href="/login"> Login|</a></th>
-	<th><a id ="logout" href="/logout"> Logout |</a></th>
-	<th><a id = "signUp" href="/signUp"> Signup |</a></th>
-</tr>
+<!-- Navbar -->
+<div class="top">
+	<div class="w3-bar w3-black w3-card">
+	  <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+	  <a href="/" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+	  <a href="/applications" class="w3-bar-item w3-button w3-padding-large w3-hide-small">APPLICATIONS |</a>
+	  <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOGIN|</a>
+	  <a href="/signUp" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SIGN UP</a>
+	  <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+	</div>
+  </div>
 
+<!-- Flash Messages -->
 {% with messages = get_flashed_messages(with_categories=true)%}
 {% if messages %}
 	{% for category, message in messages %}
@@ -66,6 +67,8 @@ tr {
 {% endif %}
 {% endwith %}
 <div class ="container">
-    {% block content %} {% endblock %}
+    {% block content %} 
+	
+	{% endblock %}
 
 </div>
