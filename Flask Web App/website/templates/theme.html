@@ -2,14 +2,14 @@
 <html lang="en">
 <meta charset="UTF-8">
 <title>{% block title %} Calculatron {% endblock %}</title>
-<link type="image/x-icon" href="static/calculatron_icon.jpg" />
+<link type="image/x-icon" href="../static/calculatron_icon.jpg" />
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src=""></script>
 <body>
 <div class="w3-container w3-center w3-teal">
 	<Header>
-		<a href="/"> <img src="../templates/static/calculatron.png" alt="Calculatron Logo" /> </a>
+		<a href="/"> <img src="../static/calculatron.png" alt="Calculatron Logo" /> </a>
 		<h3>Mathematics done to the MAX!</h3>
 	</Header>
 
@@ -33,7 +33,11 @@
 </div>
 
 <!-- Footer -->
-
+<footer style="background-color:rgb(0, 94, 128)">
+	<p>(959)200-CALC</p>
+	<p>2201 Hull Rd, Fayetteville, NC 28303</p>
+	<p><i> Copyright © Calculatron 2040 </p></i>
+</footer>
 <!-- Flash Messages -->
 {% with messages = get_flashed_messages(with_categories=true)%}
 {% if messages %}
