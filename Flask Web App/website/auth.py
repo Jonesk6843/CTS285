@@ -14,6 +14,18 @@ def about():
 def applications():
     return render_template("applications.html")
 
+@auth.route('/calculatorApp')
+def calulatorapp():
+    return render_template("calculatorApp.html")
+
+@auth.route('/randMathApp')
+def randMathApp():
+    return render_template("randMathApp.html")
+
+@auth.route('/memBankApp')
+def memBankApp():
+    return render_template("memBankApp.html")
+
 @auth.route('/signUp', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
