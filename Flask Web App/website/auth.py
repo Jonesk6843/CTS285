@@ -2,30 +2,12 @@ from flask import Blueprint, render_template, request, flash
 
 auth = Blueprint('auth', __name__)
 
+# Login Page
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template("login.html")
 
-@auth.route('/about')
-def about():
-    return render_template("about.html")
-
-@auth.route('/applications')
-def applications():
-    return render_template("applications.html")
-
-@auth.route('/calculatorApp')
-def calulatorapp():
-    return render_template("calculatorApp.html")
-
-@auth.route('/randMathApp')
-def randMathApp():
-    return render_template("randMathApp.html")
-
-@auth.route('/memBankApp')
-def memBankApp():
-    return render_template("memBankApp.html")
-
+#SignUp page
 @auth.route('/signUp', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -51,4 +33,37 @@ def sign_up():
             # add user to database
             flash('Account created!', category='success')
     return render_template("signUp.html")
+
+# About Page
+@auth.route('/about')
+def about():
+    return render_template("about.html")
+
+# Applications
+@auth.route('/applications')
+def applications():
+    return render_template("applications.html")
+
+# Calculator Application
+@auth.route('/calculatorApp', methods=['GET', 'POST'])
+def calculator():
+    if request.method == 'POST':
+        # Handle calculation here
+        try:
+            expr = request.form['expression']
+            result = eval(expr)
+        except:
+            result = 'E E E'
+        return render_template('calculatorApp.html', result=result)
+    return render_template('calculatorApp.html')
+
+# Random Number Application
+@auth.route('/randMathApp')
+def randMathApp():
+    return render_template("randMathApp.html")
+
+# Memory Bank Application
+@auth.route('/memBankApp')
+def memBankApp():
+    return render_template("memBankApp.html")
 
