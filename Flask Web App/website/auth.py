@@ -1,3 +1,4 @@
+import random
 from flask import Blueprint, render_template, request, flash
 
 auth = Blueprint('auth', __name__)
@@ -60,7 +61,29 @@ def calculator():
 # Random Number Application
 @auth.route('/randMathApp')
 def randMathApp():
-    return render_template("randMathApp.html")
+    # Generate a random math problem
+    num1 = random.randint(1, 10)
+    num2 = random.randint(1, 10)
+    operator = random.choice(['+', '-', '*', '/'])
+    question = f"{num1} {operator} {num2}"
+    # user_answer = request.input_stream['user_answer']
+    try:
+        if operator == '+':
+            correct_answer = num1 + num2
+        elif operator == '-':
+            correct_answer = num1 - num2
+        elif operator == '*':
+            correct_answer = num1 * num2
+        elif operator == '/':
+            correct_answer = num1 / num2
+    except ZeroDivisionError:
+        return "Error: Division by zero is not allowed."
+    
+    # if int(user_answer) == correct_answer:
+        result = "Correct!"
+    # else:
+        result = "Incorrect. Try again."
+    return render_template("randMathApp.html", question=question)
 
 # Memory Bank Application
 @auth.route('/memBankApp')

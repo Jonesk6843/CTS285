@@ -2,43 +2,48 @@
 
 {% block content %} 
 <h1>Number Attack</h1>
+<!--Equation Container-->
 <div class="card border-primary mb-3" style="max-width: 20rem align-items-center;">
     <div class="card-header">Equation</div>
     <div class="card-body">
+        <p>{{question}}</p>
     </div>
 </div>
-    <form method="POST" id="calculator-form">
-        <input type="text" name="expression" id="expression" placeholder="Enter your Answer" required>
-        <br>
-        <button type="button" class="calculator-button" onclick="appendToExpression('1')">1</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('2')">2</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('3')">3</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('+')">+</button>
-        <br>
-        <button type="button" class="calculator-button" onclick="appendToExpression('4')">4</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('5')">5</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('6')">6</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('-')">-</button>
-        <br>
-        <button type="button" class="calculator-button" onclick="appendToExpression('7')">7</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('8')">8</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('9')">9</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('*')">*</button>
-        <br>
-        <button type="button" class="calculator-button" onclick="appendToExpression('0')">0</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('.')">.</button>
-        <button type="button" class="calculator-button" onclick="clearExpression()">C</button>
-        <button type="button" class="calculator-button" onclick="appendToExpression('/')">/</button>
-        <br>
-        <button type="submit" class="calculator-button" style="width: 202px;">Calculate</button>
-    </form>
-    <script>
-        function appendToExpression(value) {
-            document.getElementById('expression').value += value;
-        }
 
-        function clearExpression() {
-            document.getElementById('expression').value = '';
-        }
-    </script>
+<!--Calculator-->
+<form method="POST" id="calculator-form">
+    <input type="text" name="user_answer" id="user_answer" placeholder="Enter your answer" required>
+    <br>
+    <button type="button" class="calculator-button" onclick="appendToExpression('1')">1</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('2')">2</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('3')">3</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('+')">+</button>
+    <br>
+    <button type="button" class="calculator-button" onclick="appendToExpression('4')">4</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('5')">5</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('6')">6</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('-')">-</button>
+    <br>
+    <button type="button" class="calculator-button" onclick="appendToExpression('7')">7</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('8')">8</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('9')">9</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('*')">*</button>
+    <br>
+    <button type="button" class="calculator-button" onclick="appendToExpression('0')">0</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('.')">.</button>
+    <button type="button" class="calculator-button" onclick="clearExpression()">C</button>
+    <button type="button" class="calculator-button" onclick="appendToExpression('/')">/</button>
+    <br>
+    <button type="submit" class="calculator-button" style="width: 202px;">Submit Answer</button>
+</form>
+<p>{{result}}</p>
+<script>
+    function appendToExpression(value) {
+        document.getElementById('user_answer').value += value;
+    }
+
+    function clearExpression() {
+        document.getElementById('user_answer').value = '';
+    }
+</script>
 {% endblock %}
