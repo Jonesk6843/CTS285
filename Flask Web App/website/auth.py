@@ -59,14 +59,21 @@ def calculator():
     return render_template('calculatorApp.html')
 
 # Random Number Application
-@auth.route('/randMathApp')
+@auth.route('/randMathApp', methods=['GET', 'POST'])
 def randMathApp():
+    
+    # test
+    if request.method == "POST":
+        user_answer = request.form.get("user_answer")
+        print("user submitted answer  = ", user_answer)
+    # end test
+    
     # Generate a random math problem
     num1 = random.randint(1, 10)
     num2 = random.randint(1, 10)
     operator = random.choice(['+', '-', '*', '/'])
     question = f"{num1} {operator} {num2}"
-    # user_answer = request.input_stream['user_answer']
+    correct_answer = None
     try:
         if operator == '+':
             correct_answer = num1 + num2
@@ -78,15 +85,20 @@ def randMathApp():
             correct_answer = num1 / num2
     except ZeroDivisionError:
         return "Error: Division by zero is not allowed."
-    
-    # if int(user_answer) == correct_answer:
-        result = "Correct!"
-    # else:
-        result = "Incorrect. Try again."
-    return render_template("randMathApp.html", question=question)
+
+    # assuming we're POST, the user submitted an answer
+    if request.method == "POST":
+        user_answer = request.form.get("user_answer")
+        try:
+            if float(user_answer) == float(correct_answer):
+                result = "Correct!"
+            else:
+                result = "Incorrect. Try again."
+        except ValueError:
+            # user_answer did not contain an integer
+            result = "Invalid number!"
+        return render_template("randMathApp.html", question=question, correct_answer = correct_answer, result = result)
+    result = "Your answer is..."
+    return render_template("randMathApp.html", question=question, correct_answer = correct_answer, result = result)
 
 # Memory Bank Application
-@auth.route('/memBankApp')
-def memBankApp():
-    return render_template("memBankApp.html")
-
