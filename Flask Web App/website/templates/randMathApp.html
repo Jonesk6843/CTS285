@@ -12,7 +12,7 @@
 
 <!--Calculator-->
 <form method="POST" id="calculator-form">
-    <input type="text" name="user_answer" id="user_answer" placeholder="Enter your answer" required>
+    <input type="integer" name="user_answer" id="user_answer" placeholder="Enter your answer" required>
     <br>
     <button type="button" class="calculator-button" onclick="appendToExpression('1')">1</button>
     <button type="button" class="calculator-button" onclick="appendToExpression('2')">2</button>
@@ -33,9 +33,7 @@
     <br>
     <button type="submit" class="calculator-button" style="width: 202px;">Submit Answer</button>
 </form>
-<p>Reult: {{ result }}</p>
-<p>Input: {{user_answer}}
-<p>Answer: {{correct_answer}}</p>
+<p>Result: {{ result }}</p>
 <script>
     function appendToExpression(value) 
     {

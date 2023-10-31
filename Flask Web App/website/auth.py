@@ -61,20 +61,15 @@ def calculator():
 # Random Number Application
 @auth.route('/randMathApp', methods=['GET', 'POST'])
 def randMathApp():
-    
-    # test
-    if request.method == "POST":
-        user_answer = request.form.get("user_answer")
-        print("user submitted answer  = ", user_answer)
-    # end test
-    
-    # Generate a random math problem
+    # Declaring Variables
     num1 = random.randint(1, 10)
     num2 = random.randint(1, 10)
     operator = random.choice(['+', '-', '*', '/'])
     question = f"{num1} {operator} {num2}"
-    correct_answer = None
-    try:
+    correct_answer = 0
+    result = "Your answer is..."
+    user_answer = request.form.get("user_answer")
+    try: # Create Calculatons based on operator
         if operator == '+':
             correct_answer = num1 + num2
         elif operator == '-':
@@ -85,7 +80,14 @@ def randMathApp():
             correct_answer = num1 / num2
     except ZeroDivisionError:
         return "Error: Division by zero is not allowed."
-
+    
+    # TEST
+    if request.method == "POST":
+        print("Correct Equation: ", question)
+        print("Current Answer: ", correct_answer)
+        print("User Input", user_answer)
+    # END TEST
+    
     # assuming we're POST, the user submitted an answer
     if request.method == "POST":
         user_answer = request.form.get("user_answer")
@@ -94,11 +96,6 @@ def randMathApp():
                 result = "Correct!"
             else:
                 result = "Incorrect. Try again."
-        except ValueError:
-            # user_answer did not contain an integer
+        except ValueError: # user_answer did not contain an integer
             result = "Invalid number!"
-        return render_template("randMathApp.html", question=question, correct_answer = correct_answer, result = result)
-    result = "Your answer is..."
-    return render_template("randMathApp.html", question=question, correct_answer = correct_answer, result = result)
-
-# Memory Bank Application
+    return render_template("randMathApp.html", question=question, correct_answer = correct_answer, result = result, user_answer = user_answer)
