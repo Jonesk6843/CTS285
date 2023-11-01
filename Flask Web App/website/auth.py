@@ -99,3 +99,8 @@ def randMathApp():
         except ValueError: # user_answer did not contain an integer
             result = "Invalid number!"
     return render_template("randMathApp.html", question=question, correct_answer = correct_answer, result = result, user_answer = user_answer)
+
+
+@auth.route('/memBankApp', methods=['GET', 'POST'])
+def memBankApp():
+    return render_template("memBankApp.html")
