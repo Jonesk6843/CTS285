@@ -58,17 +58,26 @@ def calculator():
         return render_template('calculatorApp.html', result=result)
     return render_template('calculatorApp.html')
 
-# Random Number Application
-@auth.route('/randMathApp', methods=['GET', 'POST'])
-def randMathApp():
+# Random Number Application [GET]
+@auth.route('/randMathApp', methods=['GET'])
+def get_randMathApp():
     # Declaring Variables
     num1 = random.randint(1, 10)
     num2 = random.randint(1, 10)
     operator = random.choice(['+', '-', '*', '/'])
     question = f"{num1} {operator} {num2}"
+    return render_template("randMathApp.html", question=question)
+
+# Random Number Application [POST]
+@auth.route('/randMathApp', methods=['POST'])
+def post_randMathApp():
+    # Declaring variables
+    num1 = request.form.get("num1")
+    num2 = request.form.get("num2")
+    operator = request.form.get("operator")
+    user_answer = request.form.get("user_answer")
     correct_answer = 0
     result = "Your answer is..."
-    user_answer = request.form.get("user_answer")
     try: # Create Calculatons based on operator
         if operator == '+':
             correct_answer = num1 + num2
@@ -80,27 +89,16 @@ def randMathApp():
             correct_answer = num1 / num2
     except ZeroDivisionError:
         return "Error: Division by zero is not allowed."
-    
-    # TEST
-    if request.method == "POST":
-        print("Correct Equation: ", question)
-        print("Current Answer: ", correct_answer)
-        print("User Input", user_answer)
-    # END TEST
-    
-    # assuming we're POST, the user submitted an answer
-    if request.method == "POST":
-        user_answer = request.form.get("user_answer")
-        try:
-            if float(user_answer) == float(correct_answer):
-                result = "Correct!"
-            else:
-                result = "Incorrect. Try again."
-        except ValueError: # user_answer did not contain an integer
-            result = "Invalid number!"
-    return render_template("randMathApp.html", question=question, correct_answer = correct_answer, result = result, user_answer = user_answer)
+    try:
+        if float(user_answer) == float(correct_answer):
+            result = "Correct!"
+        else:
+            result = "Incorrect. Try again."
+    except ValueError: # user_answer did not contain an integer
+        result = "Invalid number!"
+    return render_template("randMathResult.html", correct_answer=correct_answer, result=result, user_answer=user_answer)
 
-
+# Memory Bank
 @auth.route('/memBankApp', methods=['GET', 'POST'])
-def memBankApp():
+def randMathApp():
     return render_template("memBankApp.html")
