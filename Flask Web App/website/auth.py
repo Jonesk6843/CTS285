@@ -66,18 +66,6 @@ def get_randMathApp():
     num2 = random.randint(1, 10)
     operator = random.choice(['+', '-', '*', '/'])
     question = f"{num1} {operator} {num2}"
-    return render_template("randMathApp.html", question=question)
-
-# Random Number Application [POST]
-@auth.route('/randMathApp', methods=['POST'])
-def post_randMathApp():
-    # Declaring variables
-    num1 = request.form.get("num1")
-    num2 = request.form.get("num2")
-    operator = request.form.get("operator")
-    user_answer = request.form.get("user_answer")
-    correct_answer = 0
-    result = "Your answer is..."
     try: # Create Calculatons based on operator
         if operator == '+':
             correct_answer = num1 + num2
@@ -89,8 +77,17 @@ def post_randMathApp():
             correct_answer = num1 / num2
     except ZeroDivisionError:
         return "Error: Division by zero is not allowed."
+    return render_template("randMathApp.html", question=question, correct_answer = correct_answer)
+
+# Random Number Application [POST]
+@auth.route('/randMathApp', methods=['POST'])
+def post_randMathApp():
+    # Declaring variables
+    user_answer = request.form.get("user_answer")
+    correct_answer = request.form.get("correct_answer")
+    result = " "
     try:
-        if float(user_answer) == float(correct_answer):
+        if user_answer == correct_answer:
             result = "Correct!"
         else:
             result = "Incorrect. Try again."
