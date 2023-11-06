@@ -75,6 +75,7 @@ def get_randMathApp():
             correct_answer = num1 * num2
         elif operator == '/':
             correct_answer = num1 / num2
+            correct_answer = round(correct_answer, 2)
     except ZeroDivisionError:
         return "Error: Division by zero is not allowed."
     return render_template("randMathApp.html", question=question, correct_answer = correct_answer)

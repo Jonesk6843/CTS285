@@ -12,7 +12,7 @@
 
 <!--Calculator-->
 <form method="POST" id="calculator-form" actin="/randMathApp">
-    <input type="hidden" name="correct_answer" value="{{ correct_answer }}">
+    <input type="hidden" name="correct_answer" value="{{ correct_answer }}"> <!--Handles correct Answer to result page-->
     <input type="integer" name="user_answer" id="user_answer" placeholder="Enter your answer" required>
     <br>
     <button type="button" class="calculator-button" onclick="appendToExpression('1')">1</button>
@@ -45,4 +45,5 @@
         document.getElementById('user_answer').value = '';
     }
 </script>
+<p> *Calculatron aid: Division problems are rounded to the nearest hundreth's place* </p>
 {% endblock %}
