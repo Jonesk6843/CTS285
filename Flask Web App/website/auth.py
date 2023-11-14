@@ -1,9 +1,10 @@
 import random
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 import sqlite3
 
 auth = Blueprint('auth', __name__)
 
+equations = [] # Creating equation array
 # Login Page
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -122,5 +123,17 @@ def post_randMathApp():
 
 # Memory Bank
 @auth.route('/memBankApp', methods=['GET', 'POST'])
-def randMathApp():
-    return render_template("memBankApp.html")
+def mem_bank_app():
+    if request.method == 'POST':
+        if 'equation' in request.form:
+            equation = request.form['equation']
+            equations.append(equation)
+        elif 'clear' in request.form:
+            # Handle clearing the list
+            equations.clear()
+        return redirect(url_for('auth.mem_bank_app'))  # Redirect to the same route after form submission
+    return render_template('memBankApp.html')
+
+@auth.route('/memBankDisplay')
+def memBankDisplay():
+    return render_template("memBankDisplay.html", equations=equations)
